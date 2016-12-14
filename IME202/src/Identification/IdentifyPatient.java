@@ -138,7 +138,7 @@ public class IdentifyPatient {
 			arrayPatient.add(trait);
 		}
 		result1.close();
-		String[][] a = Util.arrayToTab2d(arrayPatient,6);
+		String[][] a = Util_LinhDan.arrayToTab2d(arrayPatient,6);
 
 		String q1c = "INSERT INTO patient(Nom,Prenom,Sexe,DDN_Jour,DDN_Mois,DDN_Annee) VALUES (?, ?, ?, ?,?,?);";
 		PreparedStatement pt = null;
@@ -179,7 +179,7 @@ public class IdentifyPatient {
 			array.add(numAutoPatient+"|"+ rec_ACP);
 		}
 		result1.close();
-		String[][] a = Util.arrayToTab2d(array,2);
+		String[][] a = Util_LinhDan.arrayToTab2d(array,2);
 
 		String q1c = "INSERT INTO rel_patient_acp(NumPatient,Ligne_ACP) VALUES (?, ?);";
 		PreparedStatement pt = null;
@@ -216,7 +216,7 @@ public class IdentifyPatient {
 			array.add(numAutoPatient+"|"+ rec_PMSI);
 		}
 		result1.close();
-		String[][] a = Util.arrayToTab2d(array,2);
+		String[][] a = Util_LinhDan.arrayToTab2d(array,2);
 
 		String q1c = "INSERT INTO rel_patient_pmsi(NumPatient,Ligne_PMSI) VALUES (?,?);";
 		PreparedStatement pt = null;
@@ -264,7 +264,7 @@ public class IdentifyPatient {
 		}
 		result1.close();
 
-		String[][] a = Util.arrayToTab2d(arrayPatient,7);
+		String[][] a = Util_LinhDan.arrayToTab2d(arrayPatient,7);
 
 		return a;
 	}
@@ -293,19 +293,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1b = a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2b = a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -345,19 +345,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1b = a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2b = a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -397,19 +397,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][1]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1b = a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2b = a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -449,19 +449,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5];	
 			s1b = a[i][3]+"|"+a[i][4]+"|"+a[i][5];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5];
 				s2b = a[j][3]+"|"+a[j][4]+"|"+a[j][5];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -501,19 +501,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][1]+"|"+a[i][2]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1b = a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2b = a[j][4]+"|"+a[j][5]+"|"+a[j][6];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -553,19 +553,19 @@ public class IdentifyPatient {
 			s1 = a[i][0]+"|"+a[i][1]+"|"+a[i][2]+"|"+a[i][3]+"|"+a[i][4]+"|"+a[i][5]+"|"+a[i][6];	
 			s1a = a[i][1]+"|"+a[i][2]+"|"+a[i][3];
 			s1b = a[i][3];
-			soundExNom1 = Util.soundExFr(a[i][1]);
-			soundExPrenom1 = Util.soundExFr(a[i][2]);
+			soundExNom1 = Util_LinhDan.soundExFr(a[i][1]);
+			soundExPrenom1 = Util_LinhDan.soundExFr(a[i][2]);
 
 			for (int j=i+1; j<a.length;j++){
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3];
 				s2b = a[j][3];
-				soundExNom2 = Util.soundExFr(a[j][1]);
-				soundExPrenom2 = Util.soundExFr(a[j][2]);
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
-				percent3 = Util.perSimilarity(s1b,s2b); 
+				soundExNom2 = Util_LinhDan.soundExFr(a[j][1]);
+				soundExPrenom2 = Util_LinhDan.soundExFr(a[j][2]);
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
+				percent3 = Util_LinhDan.perSimilarity(s1b,s2b); 
 
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
@@ -608,8 +608,8 @@ public class IdentifyPatient {
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -649,8 +649,8 @@ public class IdentifyPatient {
 				s2a = a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -690,8 +690,8 @@ public class IdentifyPatient {
 				s2a = a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -731,8 +731,8 @@ public class IdentifyPatient {
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -772,8 +772,8 @@ public class IdentifyPatient {
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -812,7 +812,7 @@ public class IdentifyPatient {
 				s2 = a[j][0]+"|"+a[j][1]+"|"+a[j][2]+"|"+a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 				s2a = a[j][3]+"|"+a[j][4]+"|"+a[j][5]+"|"+a[j][6];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
@@ -852,8 +852,8 @@ public class IdentifyPatient {
 				s2a = a[j][1]+"|"+a[j][2]+"|"+a[j][3];
 				s2aInv = a[j][2]+"|"+a[j][1]+"|"+a[j][3];
 
-				percent1 = Util.perSimilarity(s1a,s2a); 
-				percent2 = Util.perSimilarity(s1a,s2aInv); 
+				percent1 = Util_LinhDan.perSimilarity(s1a,s2a); 
+				percent2 = Util_LinhDan.perSimilarity(s1a,s2aInv); 
 
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);

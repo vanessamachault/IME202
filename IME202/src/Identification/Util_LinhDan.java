@@ -4,7 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Util {
+public class Util_LinhDan {
 
 	/* **************************************************************************************************************** */
 	public static int perSimilarity(String a,String b){ 
