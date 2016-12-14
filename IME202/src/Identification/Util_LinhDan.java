@@ -32,13 +32,6 @@ public class Util_LinhDan {
 	}
 
 	/* **************************************************************************************************************** */
-	public static List<String> arraytolist(ArrayList<String> a){
-		Set <String> b = new LinkedHashSet<String>(a);
-		List<String> c = new ArrayList<String>(b);
-		return c;
-
-	}
-
 	public static String[][] stringToTab2d(String a, int nbvariable){
 		String[] tab1d = a.split(";");		
 
@@ -71,7 +64,16 @@ public class Util_LinhDan {
 		return tab2d; 
 		}
 	}
-
+	
+	public static List<String> arrayToList(ArrayList<String> al) {
+		Set <String> t1 = new LinkedHashSet<String>(al);
+		List<String> t2 = new ArrayList<String>(t1);;
+		return t2;
+		
+	}
+	
+		
+	
 	public static String[][] append(String[][] a, String[][] b) {
 		String[][] tab = null;
 		
@@ -218,6 +220,9 @@ public class Util_LinhDan {
 		output = output + "0000";
 		return output.substring(0,4);
 	}
+
+
+
 
 	/* **************************************************************************************************************** */
 

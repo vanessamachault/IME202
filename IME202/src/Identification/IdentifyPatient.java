@@ -5,15 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-
-import identification.Util;
 
 public class IdentifyPatient {
 
 	/**********************************************************************************************************************************/
+
 	public static  void createTablePatient(String url,String user, String password) throws SQLException{
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -236,8 +234,10 @@ public class IdentifyPatient {
 		}
 	}
 
+	/**********************************************************************************************************************************/
+
 	// IF TABLE patient,rel_patient_ACP,rel_patient_PMSI NOT EMPTY ?????????????????????????
-	
+
 	/**********************************************************************************************************************************/
 
 	public static String [][] get2dArrayPatientWithID(String url,String user, String password) throws SQLException{
@@ -270,7 +270,8 @@ public class IdentifyPatient {
 	}
 
 	/**********************************************************************************************************************************/
-	//		IdentityPatient.method1234567a7b(url,user,password); OK
+	static int atPercent = 80;
+
 	public static List<List<String>> method1234567a7b(String url,String user, String password){
 		String[][] a = null;
 
@@ -280,12 +281,12 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
 		int percent2=0;
 		int percent3=0;
+
 		List<List<String>> superArray = new ArrayList<List<String>>();
 
 		for (int i=0; i<a.length;i++){
@@ -310,19 +311,17 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
-					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
-					superArray.add(t2);
+					al.add(s2);	
 				}
 			}
-		}
+			List<String> t2 = Util_LinhDan.arrayToList(al);
 
-		//System.out.println(superArray);
+			if(!t2.isEmpty()){
+				superArray.add(t2);
+			}
+		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method234567a7b(url,user,password); OK 
 	public static List<List<String>> method234567a7b(String url,String user, String password){
 		String[][] a = null;
 
@@ -332,12 +331,12 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
 		int percent2=0;
 		int percent3=0;
+
 		List<List<String>> superArray = new ArrayList<List<String>>();
 
 		for (int i=0; i<a.length;i++){
@@ -362,18 +361,17 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent || (percent3>atPercent && (soundExNom1.equals(soundExNom2)&& soundExPrenom1.equals(soundExPrenom2))||
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
-					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+					al.add(s2);	
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
-
-		//System.out.println(superArray);
 		return superArray;
 	}
-
 	//		IdentityPatient.method134567a7b(url,user,password); OK 
 	public static List<List<String>> method134567a7b(String url,String user, String password){
 		String[][] a = null;
@@ -384,12 +382,12 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
 		int percent2=0;
 		int percent3=0;
+
 		List<List<String>> superArray = new ArrayList<List<String>>();
 
 		for (int i=0; i<a.length;i++){
@@ -415,14 +413,14 @@ public class IdentifyPatient {
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
-
-		//System.out.println(superArray);
 		return superArray;
 	}
 
@@ -436,7 +434,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
@@ -467,14 +464,14 @@ public class IdentifyPatient {
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
-
-		//System.out.println(superArray);
 		return superArray;
 	}
 
@@ -488,7 +485,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
@@ -519,14 +515,14 @@ public class IdentifyPatient {
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
-
-		//System.out.println(superArray);
 		return superArray;
 	}
 
@@ -540,7 +536,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s1b,s2,s2a,s2aInv,s2b;
 		String soundExNom1,soundExPrenom1,soundExNom2,soundExPrenom2;
 		int percent1=0;
@@ -571,14 +566,14 @@ public class IdentifyPatient {
 						(soundExNom1.equals(soundExPrenom2)&& soundExPrenom1.equals(soundExNom1)))){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
-
-		//System.out.println(superArray);
 		return superArray;
 	}
 
@@ -592,7 +587,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -614,16 +608,16 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method23456(url,user,password); OK
 	public static List<List<String>> method23456(String url,String user, String password){
 		String[][] a = null;
 
@@ -633,7 +627,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -655,8 +648,10 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
@@ -674,7 +669,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -696,8 +690,10 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
@@ -715,7 +711,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -737,8 +732,10 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
@@ -756,7 +753,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -778,8 +774,10 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
@@ -797,7 +795,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a;
 		int percent1=0;
 		int percent2=0;
@@ -817,8 +814,10 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
@@ -833,10 +832,9 @@ public class IdentifyPatient {
 		try {
 			a = IdentifyPatient.get2dArrayPatientWithID(url,user,password);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			System.out.println("E");
 		}
 
-		int atPercent = 70;
 		String s1,s1a,s2,s2a,s2aInv;
 		int percent1=0;
 		int percent2=0;
@@ -858,13 +856,261 @@ public class IdentifyPatient {
 				if (percent1>atPercent || percent2>atPercent){
 					al.add(s1);
 					al.add(s2);
-					Set <String> t1 = new LinkedHashSet<String>(al);
-					List<String> t2 = new ArrayList<String>(t1);
+				}
+
+				List<String> t2 = Util_LinhDan.arrayToList(al);
+
+				if(!t2.isEmpty()){
 					superArray.add(t2);
 				}
 			}
 		}
 		return superArray;
+	}
+
+	/******************************************************************************************************************************/	
+
+	public static List<List<String>> getListPatientID (List<List<String>> superArrayIn){
+		List<List<String>> superArrayInWithID = new ArrayList<List<String>>();	
+		ArrayList<String> c = null ;
+
+		for (int i = 0; i<superArrayIn.size(); i++){
+			String[][] a = Util_LinhDan.arrayToTab2d((ArrayList<String>) superArrayIn.get(i), 7);
+			c = new ArrayList<String>();
+			for (int j = 0; j<a.length; j++){
+				String b = a[j][0];
+				c.add(b);
+			}
+			superArrayInWithID.add(c);
+		}
+		System.out.println(superArrayInWithID);
+		return superArrayInWithID;
+	}
+
+	/******************************************************************************************************************************/	
+
+	public static List<List<String>> getDiagnosticACP(String url,String user, String password) throws SQLException{
+		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
+		ArrayList<String> arrayOut = new ArrayList<String>();
+		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
+
+		String query = "SELECT DISTINCT NumPatient,adicap "
+				+ "FROM rel_patient_acp INNER JOIN adicap ON rel_patient_acp.Ligne_ACP = adicap.NumAdicapPrel "
+				+ "WHERE NumPatient = ? ";		
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(query);
+
+		for (int i = 0; i<superArrayInWithID.size(); i++){  
+			ArrayList<String> cID = (ArrayList<String>) superArrayInWithID.get(i);
+			arrayOut = new ArrayList<String>();
+
+			for (int j = 0; j<cID.size(); j++){ 
+				String concat = "";
+				pt.setString(1, cID.get(j));
+
+				ResultSet rs = pt.executeQuery();
+				while (rs.next()) {
+					String numPatient = rs.getString("NumPatient");
+					String adicap = rs.getString("adicap");
+					concat = numPatient + "|" + adicap;
+					arrayOut.add(concat);
+				}
+			}
+			superArrayOut.add(arrayOut);
+		}
+		System.out.println(superArrayOut);
+		return superArrayOut;
+	}
+
+	public static List<List<String>> getDiagnosticPMSI(String url,String user, String password) throws SQLException{
+
+		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
+		ArrayList<String> arrayOut = new ArrayList<String>();
+		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
+
+		String queryDP = "SELECT DISTINCT rel_patient_pmsi.NumPatient,DP,DR,DAS "
+				+ "FROM sejour INNER JOIN rel_patient_pmsi ON sejour.NumAutoSejour = rel_patient_pmsi.Ligne_PMSI "
+				+ "INNER JOIN das ON sejour.NumSejour = das.NumSejour "
+				+ "WHERE rel_patient_pmsi.NumPatient = ?;"; 
+
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(queryDP);
+
+		for (int i = 0; i<superArrayInWithID.size(); i++){  
+			ArrayList<String> cID = (ArrayList<String>) superArrayInWithID.get(i);
+			arrayOut = new ArrayList<String>();
+
+			for (int j = 0; j<cID.size(); j++){ 
+				String concat = "";
+				pt.setString(1, cID.get(j));
+
+				ResultSet rs = pt.executeQuery();
+				while (rs.next()) {
+					String numPatient = rs.getString("rel_patient_pmsi.NumPatient");
+					String dp = rs.getString("DP");
+					String dr = rs.getString("DR");
+					String das = rs.getString("DAS");
+					concat = numPatient + "|" + dp+ "|" +dr+ "|" +das;
+					arrayOut.add(concat);
+				}
+			}
+			superArrayOut.add(arrayOut);
+		}
+		System.out.println(superArrayOut);
+		return superArrayOut;
+	}
+
+	public static List<List<String>> getDiagnosticDP(String url,String user, String password) throws SQLException{
+
+		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
+		ArrayList<String> arrayOut = new ArrayList<String>();
+		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
+
+		String queryDP = "SELECT DISTINCT rel_patient_pmsi.NumPatient,DP "
+				+ "FROM rel_patient_pmsi INNER JOIN sejour ON sejour.NumAutoSejour = rel_patient_pmsi.Ligne_PMSI "
+				+ "WHERE rel_patient_pmsi.NumPatient = ? ";	
+
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(queryDP);
+
+		for (int i = 0; i<superArrayInWithID.size(); i++){  
+			ArrayList<String> cID = (ArrayList<String>) superArrayInWithID.get(i);
+			arrayOut = new ArrayList<String>();
+
+			for (int j = 0; j<cID.size(); j++){ 
+				String concat = "";
+				pt.setString(1, cID.get(j));
+
+				ResultSet rs = pt.executeQuery();
+				while (rs.next()) {
+					String numPatient = rs.getString("rel_patient_pmsi.NumPatient");
+					String dp = rs.getString("DP");
+					concat = numPatient + "|" + dp;
+					arrayOut.add(concat);
+				}
+			}
+			superArrayOut.add(arrayOut);
+		}
+		System.out.println(superArrayOut);
+		return superArrayOut;
+	}
+
+	public static List<List<String>> getDiagnosticDR(String url,String user, String password) throws SQLException{
+
+		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
+		ArrayList<String> arrayOut = new ArrayList<String>();
+		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
+
+		String queryDP = "SELECT DISTINCT rel_patient_pmsi.NumPatient,DR "
+				+ "FROM rel_patient_pmsi INNER JOIN sejour ON sejour.NumAutoSejour = rel_patient_pmsi.Ligne_PMSI "
+				+ "WHERE rel_patient_pmsi.NumPatient = ? ";	
+
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(queryDP);
+
+		for (int i = 0; i<superArrayInWithID.size(); i++){  
+			ArrayList<String> cID = (ArrayList<String>) superArrayInWithID.get(i);
+			arrayOut = new ArrayList<String>();
+
+			for (int j = 0; j<cID.size(); j++){ 
+				String concat = "";
+				pt.setString(1, cID.get(j));
+
+				ResultSet rs = pt.executeQuery();
+				while (rs.next()) {
+					String numPatient = rs.getString("rel_patient_pmsi.NumPatient");
+					String dr = rs.getString("DR");
+					concat = numPatient + "|" + dr;
+					arrayOut.add(concat);
+				}
+			}
+			superArrayOut.add(arrayOut);
+		}
+		System.out.println(superArrayOut);
+		return superArrayOut;
+	}
+
+	public static List<List<String>> getDiagnosticDAS(String url,String user, String password) throws SQLException{
+
+		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
+		ArrayList<String> arrayOut = new ArrayList<String>();
+		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
+
+		String queryDP = "SELECT DISTINCT rel_patient_pmsi.NumPatient,DAS "
+				+ "FROM sejour INNER JOIN rel_patient_pmsi ON sejour.NumAutoSejour = rel_patient_pmsi.Ligne_PMSI "
+				+ "INNER JOIN das ON sejour.NumSejour = das.NumSejour "
+				+ "WHERE rel_patient_pmsi.NumPatient = ?;"; 
+
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(queryDP);
+
+		for (int i = 0; i<superArrayInWithID.size(); i++){  
+			ArrayList<String> cID = (ArrayList<String>) superArrayInWithID.get(i);
+			arrayOut = new ArrayList<String>();
+
+			for (int j = 0; j<cID.size(); j++){ 
+				String concat = "";
+				pt.setString(1, cID.get(j));
+
+				ResultSet rs = pt.executeQuery();
+				while (rs.next()) {
+					String numPatient = rs.getString("rel_patient_pmsi.NumPatient");
+					String das = rs.getString("DAS");
+					concat = numPatient + "|" + das;
+					arrayOut.add(concat);
+				}
+			}
+			superArrayOut.add(arrayOut);
+		}
+		System.out.println(superArrayOut);
+		return superArrayOut;
+	}
+
+	/*******************************************************************************************************************************/	
+	
+	//public static List<List<String>> getDiagnosticPMSI(String url,String user, String password){}
+
+	/*******************************************************************************************************************************/	
+	public static void groupPatient(String url,String user, String password) throws SQLException{
+
+		ArrayList<String> a =  new ArrayList<String>(Arrays.asList(new String[]{"61", "4"}));   
+
+		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+		Connection connectEx = connect.getConnect(); 
+
+		String query = "UPDATE patient "
+				+ "SET identite_principale = ? "
+				+ "WHERE NumAutoPatient = ?;";
+		PreparedStatement pt = null;
+		pt= connectEx.prepareStatement(query);
+
+		for (int i = 1; i<a.size(); i ++){  
+			pt.setString(1, a.get(0)); 
+			pt.setString(2,  a.get(i)); 	
+			pt.addBatch();
+		}
+
+		try {
+			pt.executeBatch();
+		} catch (Exception e) {
+			System.out.println("INSERT INTO not OK");
+			e.printStackTrace();
+		}
 	}
 
 	/**********************************************************************************************************************************/	
@@ -875,17 +1121,15 @@ public class IdentifyPatient {
 		String user = "root";
 		String password = "";
 
-//		IdentifyPatient.createTablePatient(url,user,password);
-//		IdentifyPatient.createTableRelPatientACP(url, user, password);
-//		IdentifyPatient.createTableRelPatientPMSI(url, user, password);
+		//		IdentifyPatient.createTablePatient(url,user,password);
+		//		IdentifyPatient.createTableRelPatientACP(url, user, password);
+		//		IdentifyPatient.createTableRelPatientPMSI(url, user, password);
 
-		IdentifyPatient.importPatientToTablePatient(url,user,password);
-		IdentifyPatient.importRelPatientACP(url, user, password);
-		IdentifyPatient.importRelPatientPMSI(url, user, password);
+		//		IdentifyPatient.importPatientToTablePatient(url,user,password);
+		//		IdentifyPatient.importRelPatientACP(url, user, password);
+		//		IdentifyPatient.importRelPatientPMSI(url, user, password);
 
-		System.exit(-1);
-
-		IdentifyPatient.method1234567a7b(url,user,password); //DEFAULT CHOICES
+		//		List<List<String>> a = IdentifyPatient.method1234567a7b(url,user,password); //DEFAULT CHOICES
 		//		IdentityPatient.method234567a7b(url,user,password); 
 		//		IdentityPatient.method134567a7b(url,user,password); 
 		//		IdentityPatient.method123457a7b(url,user,password); 
@@ -900,13 +1144,19 @@ public class IdentifyPatient {
 		//		IdentityPatient.method123(url,user,password); 
 		//		IdentityPatient.method3456(url,user,password); 
 
+		// 		IdentifyPatient.getDiagnosticACP(url, user, password);
+		//		IdentifyPatient.getDiagnosticPMSI(url, user, password);
+		//		IdentifyPatient.getDiagnosticDP(url, user, password);
+		// 		IdentifyPatient.getDiagnosticDR(url, user, password);
+		// 		IdentifyPatient.getDiagnosticDAS(url, user, password);
 
-
+		// 		IdentifyPatient.groupPatient(url, user, password);
+		
 	}
 }
 
 
-//connect.close(connectEx);
+
 
 
 
