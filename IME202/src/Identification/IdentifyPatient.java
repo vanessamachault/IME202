@@ -26,9 +26,7 @@ public class IdentifyPatient {
 				+ "DDN_Jour TINYINT(2),"
 				+ "DDN_Mois TINYINT(2),"
 				+ "DDN_Annee SMALLINT(4),"
-				+ "hashPatient INT(10),"
-				+ "identite_principale INT(10),"
-				+ "flag_id TINYINT(1),"
+				+ "id_principale INT(10),"
 				+ "PRIMARY KEY (NumAutoPatient));";
 		try {
 			patientIdentity.executeUpdate(q1a);
@@ -47,7 +45,6 @@ public class IdentifyPatient {
 		}
 
 	}
-
 	public static  void createTableRelPatientACP(String url,String user, String password) throws SQLException{
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -77,7 +74,6 @@ public class IdentifyPatient {
 		}
 
 	}
-
 	public static  void createTableRelPatientPMSI(String url,String user, String password) throws SQLException{
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -110,7 +106,7 @@ public class IdentifyPatient {
 
 	/**********************************************************************************************************************************/	
 
-	public static  void importPatientToTablePatient(String url,String user, String password) throws SQLException{
+	public static void importPatientToTablePatient(String url,String user, String password) throws SQLException{
 
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -159,7 +155,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 	}
-
 	public static void importRelPatientACP(String url,String user, String password) throws SQLException{
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -196,7 +191,6 @@ public class IdentifyPatient {
 			e.printStackTrace();
 		}
 	}
-
 	public static void importRelPatientPMSI(String url,String user, String password) throws SQLException{
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
 		Connection connectEx = connect.getConnect(); 
@@ -236,10 +230,6 @@ public class IdentifyPatient {
 
 	/**********************************************************************************************************************************/
 
-	// IF TABLE patient,rel_patient_ACP,rel_patient_PMSI NOT EMPTY ?????????????????????????
-
-	/**********************************************************************************************************************************/
-
 	public static String [][] get2dArrayPatientWithID(String url,String user, String password) throws SQLException{
 
 		ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
@@ -272,7 +262,7 @@ public class IdentifyPatient {
 	/**********************************************************************************************************************************/
 	static int atPercent = 80;
 
-	public static List<List<String>> method1234567a7b(String url,String user, String password){
+	public static List<List<String>> method123456SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -322,7 +312,7 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-	public static List<List<String>> method234567a7b(String url,String user, String password){
+	public static List<List<String>> method23456SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -372,8 +362,7 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-	//		IdentityPatient.method134567a7b(url,user,password); OK 
-	public static List<List<String>> method134567a7b(String url,String user, String password){
+	public static List<List<String>> method13456SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -423,9 +412,7 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method123457a7b(url,user,password); OK 
-	public static List<List<String>> method123457a7b(String url,String user, String password){
+	public static List<List<String>> method12345SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -474,9 +461,7 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method124567a7b(url,user,password); OK
-	public static List<List<String>> method124567a7b(String url,String user, String password){
+	public static List<List<String>> method12456SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -525,9 +510,7 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method1237a7b(url,user,password); OK
-	public static List<List<String>> method1237a7b(String url,String user, String password){
+	public static List<List<String>> method123SoundEx(String url,String user, String password){
 		String[][] a = null;
 
 		try {
@@ -576,8 +559,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method123456(url,user,password); OK
 	public static List<List<String>> method123456(String url,String user, String password){
 		String[][] a = null;
 
@@ -658,8 +639,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method13456(url,user,password); OK
 	public static List<List<String>> method13456(String url,String user, String password){
 		String[][] a = null;
 
@@ -700,8 +679,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method12345(url,user,password); OK 
 	public static List<List<String>> method12345(String url,String user, String password){
 		String[][] a = null;
 
@@ -742,8 +719,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method12456(url,user,password); OK
 	public static List<List<String>> method12456(String url,String user, String password){
 		String[][] a = null;
 
@@ -784,8 +759,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method3456(url,user,password); OK
 	public static List<List<String>> method3456(String url,String user, String password){
 		String[][] a = null;
 
@@ -824,8 +797,6 @@ public class IdentifyPatient {
 		}
 		return superArray;
 	}
-
-	//		IdentityPatient.method123(url,user,password); OK
 	public static List<List<String>> method123(String url,String user, String password){
 		String[][] a = null;
 
@@ -890,7 +861,7 @@ public class IdentifyPatient {
 	/******************************************************************************************************************************/	
 
 	public static List<List<String>> getDiagnosticACP(String url,String user, String password) throws SQLException{
-		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayIn = IdentifyPatient.method123456SoundEx(url, user, password);
 		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
 		ArrayList<String> arrayOut = new ArrayList<String>();
 		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
@@ -921,13 +892,12 @@ public class IdentifyPatient {
 			}
 			superArrayOut.add(arrayOut);
 		}
-		System.out.println(superArrayOut);
+		//System.out.println(superArrayOut);
 		return superArrayOut;
 	}
-
 	public static List<List<String>> getDiagnosticPMSI(String url,String user, String password) throws SQLException{
 
-		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayIn = IdentifyPatient.method123456SoundEx(url, user, password);
 		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
 		ArrayList<String> arrayOut = new ArrayList<String>();
 		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
@@ -962,13 +932,12 @@ public class IdentifyPatient {
 			}
 			superArrayOut.add(arrayOut);
 		}
-		System.out.println(superArrayOut);
+		//System.out.println(superArrayOut);
 		return superArrayOut;
 	}
-
 	public static List<List<String>> getDiagnosticDP(String url,String user, String password) throws SQLException{
 
-		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayIn = IdentifyPatient.method123456SoundEx(url, user, password);
 		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
 		ArrayList<String> arrayOut = new ArrayList<String>();
 		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
@@ -1000,13 +969,12 @@ public class IdentifyPatient {
 			}
 			superArrayOut.add(arrayOut);
 		}
-		System.out.println(superArrayOut);
+		//System.out.println(superArrayOut);
 		return superArrayOut;
 	}
-
 	public static List<List<String>> getDiagnosticDR(String url,String user, String password) throws SQLException{
 
-		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayIn = IdentifyPatient.method123456SoundEx(url, user, password);
 		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
 		ArrayList<String> arrayOut = new ArrayList<String>();
 		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
@@ -1038,13 +1006,12 @@ public class IdentifyPatient {
 			}
 			superArrayOut.add(arrayOut);
 		}
-		System.out.println(superArrayOut);
+		//System.out.println(superArrayOut);
 		return superArrayOut;
 	}
-
 	public static List<List<String>> getDiagnosticDAS(String url,String user, String password) throws SQLException{
 
-		List<List<String>> superArrayIn = IdentifyPatient.method1234567a7b(url, user, password);
+		List<List<String>> superArrayIn = IdentifyPatient.method123456SoundEx(url, user, password);
 		List<List<String>> superArrayInWithID = IdentifyPatient.getListPatientID(superArrayIn);
 		ArrayList<String> arrayOut = new ArrayList<String>();
 		List<List<String>> superArrayOut = new ArrayList<List<String>>();	
@@ -1077,15 +1044,12 @@ public class IdentifyPatient {
 			}
 			superArrayOut.add(arrayOut);
 		}
-		System.out.println(superArrayOut);
+		//System.out.println(superArrayOut);
 		return superArrayOut;
 	}
 
 	/*******************************************************************************************************************************/	
-	
-	//public static List<List<String>> getDiagnosticPMSI(String url,String user, String password){}
 
-	/*******************************************************************************************************************************/	
 	public static void groupPatient(String url,String user, String password) throws SQLException{
 
 		ArrayList<String> a =  new ArrayList<String>(Arrays.asList(new String[]{"61", "4"}));   
@@ -1094,7 +1058,7 @@ public class IdentifyPatient {
 		Connection connectEx = connect.getConnect(); 
 
 		String query = "UPDATE patient "
-				+ "SET identite_principale = ? "
+				+ "SET id_principal = ? "
 				+ "WHERE NumAutoPatient = ?;";
 		PreparedStatement pt = null;
 		pt= connectEx.prepareStatement(query);
@@ -1108,50 +1072,91 @@ public class IdentifyPatient {
 		try {
 			pt.executeBatch();
 		} catch (Exception e) {
-			System.out.println("INSERT INTO not OK");
+			System.out.println("UPDATE 'id_principal' not OK");
 			e.printStackTrace();
 		}
 	}
 
 	/**********************************************************************************************************************************/	
 
+	public static void updateFlagID(String fin) throws SQLException{
+		fin = "Fin Recherche Doublons";
+		if (fin == "Fin Recherche Doublons"){
+			String url = "jdbc:mysql://localhost/projet_ime_202";
+			String user = "root";
+			String password = "";
+			ConnexionJdbcMySql connect = new ConnexionJdbcMySql(url, user, password); 
+			Connection connectEx = connect.getConnect(); 
+			
+			Statement patientIdentity = connectEx.createStatement();
+			String query1 = "UPDATE sejour "
+					+ "SET flag_identification = 1;";
+			String query2 = "UPDATE adicap_prelevement "
+					+ "SET flag_identification = 1;";
+			try {
+				try {
+					patientIdentity.executeUpdate(query1);
+				} catch (Exception e) {
+					System.out.println("UPDATE FLAG ID ('sejour') not OK");
+				}
+				
+				try {
+					patientIdentity.executeUpdate(query2);
+				} catch (Exception e) {
+					System.out.println("UPDATE FLAG ID ('adicap_prelevement') not OK");
+				}
+			} catch (Exception e) {
+				System.exit(-1);
+			}
+			
+		}
+	}
+	// comparer nvx patient où flag id = 0 à patient existant dans table patient 
+	// add patient ssi n'existe pas 
+
+	// IF TABLE patient,rel_patient_ACP,rel_patient_PMSI NOT EMPTY ????????????????????????? FLAG ? IN WHICH TABLE ? 
+	// public static  void addPatientToTablePatient(String url,String user, String password) throws SQLException{}
+	// public static void addRelPatientACP(String url,String user, String password) throws SQLException{}
+	// public static void addRelPatientPMSI(String url,String user, String password) throws SQLException{}
+
+	/**********************************************************************************************************************************/
 	public static  void main(String[] args) throws SQLException {
 
-		String url = "jdbc:mysql://localhost/projet_ime_202";
-		String user = "root";
-		String password = "";
+		//				String url = "jdbc:mysql://localhost/projet_ime_202";
+		//				String user = "root";
+		//				String password = "";
+		//
+		//				IdentifyPatient.createTablePatient(url,user,password);
+		//				IdentifyPatient.createTableRelPatientACP(url, user, password);
+		//				IdentifyPatient.createTableRelPatientPMSI(url, user, password);
+		//
+		//				IdentifyPatient.importPatientToTablePatient(url,user,password);
+		//				IdentifyPatient.importRelPatientACP(url, user, password);
+		//				IdentifyPatient.importRelPatientPMSI(url, user, password);
+		//
+		//				List<List<String>> a = IdentifyPatient.method123456SoundEx(url,user,password); //DEFAULT CHOICES
+		//				IdentityPatient.method23456SoundEx(url,user,password); 
+		//				IdentityPatient.method13456SoundEx(url,user,password); 
+		//				IdentityPatient.method12345SoundEx(url,user,password); 
+		//				IdentityPatient.method12456SoundEx(url,user,password);
+		//				IdentityPatient.method123SoundEx(url,user,password); 
+		//
+		//				IdentityPatient.method123456(url,user,password); 
+		//				IdentityPatient.method23456(url,user,password); 
+		//				IdentityPatient.method13456(url,user,password); 
+		//				IdentityPatient.method12345(url,user,password); 
+		//				IdentityPatient.method12456(url,user,password);
+		//				IdentityPatient.method123(url,user,password); 
+		//				IdentityPatient.method3456(url,user,password); 
+		//
+		//		 		IdentifyPatient.getDiagnosticACP(url, user, password);
+		//				IdentifyPatient.getDiagnosticPMSI(url, user, password);
+		//				IdentifyPatient.getDiagnosticDP(url, user, password);
+		//		 		IdentifyPatient.getDiagnosticDR(url, user, password);
+		//				IdentifyPatient.getDiagnosticDAS(url, user, password);
+		//
+		//				IdentifyPatient.groupPatient(url, user, password);
 
-		//		IdentifyPatient.createTablePatient(url,user,password);
-		//		IdentifyPatient.createTableRelPatientACP(url, user, password);
-		//		IdentifyPatient.createTableRelPatientPMSI(url, user, password);
-
-		//		IdentifyPatient.importPatientToTablePatient(url,user,password);
-		//		IdentifyPatient.importRelPatientACP(url, user, password);
-		//		IdentifyPatient.importRelPatientPMSI(url, user, password);
-
-		//		List<List<String>> a = IdentifyPatient.method1234567a7b(url,user,password); //DEFAULT CHOICES
-		//		IdentityPatient.method234567a7b(url,user,password); 
-		//		IdentityPatient.method134567a7b(url,user,password); 
-		//		IdentityPatient.method123457a7b(url,user,password); 
-		//		IdentityPatient.method124567a7b(url,user,password);
-		//		IdentityPatient.method1237a7b(url,user,password); 
-
-		//		IdentityPatient.method123456(url,user,password); 
-		//		IdentityPatient.method23456(url,user,password); 
-		//		IdentityPatient.method13456(url,user,password); 
-		//		IdentityPatient.method12345(url,user,password); 
-		//		IdentityPatient.method12456(url,user,password);
-		//		IdentityPatient.method123(url,user,password); 
-		//		IdentityPatient.method3456(url,user,password); 
-
-		// 		IdentifyPatient.getDiagnosticACP(url, user, password);
-		//		IdentifyPatient.getDiagnosticPMSI(url, user, password);
-		//		IdentifyPatient.getDiagnosticDP(url, user, password);
-		// 		IdentifyPatient.getDiagnosticDR(url, user, password);
-		// 		IdentifyPatient.getDiagnosticDAS(url, user, password);
-
-		// 		IdentifyPatient.groupPatient(url, user, password);
-		
 	}
 }
 
