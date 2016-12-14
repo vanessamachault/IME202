@@ -1,4 +1,5 @@
 package Identification;
+
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -32,17 +33,6 @@ public class Util_LinhDan {
 	}
 
 	/* **************************************************************************************************************** */
-	public static String[][] stringToTab2d(String a, int nbvariable){
-		String[] tab1d = a.split(";");		
-
-		int r = 0;
-		String[][] tab2d = new String[tab1d.length][nbvariable]; 
-		for (String tab1 : tab1d) {
-			tab2d[r++] = tab1.split("\\|",nbvariable);
-		}
-		return tab2d; 
-	}
-
 	public static String[][] arrayToTab2d(ArrayList<String> a, int nbvariable){
 		String[][] tab2d;
 		if(a.size()==0){
@@ -72,29 +62,6 @@ public class Util_LinhDan {
 		
 	}
 	
-		
-	
-	public static String[][] append(String[][] a, String[][] b) {
-		String[][] tab = null;
-		
-		if(a!=null && b!=null){
-			tab = new String[a.length + b.length][];
-			System.arraycopy(a, 0, tab, 0, a.length);
-			System.arraycopy(b, 0, tab, a.length,b.length);
-		 } else if (a==null){
-			tab = new String[b.length][];
-			System.arraycopy(b, 0, tab, 0, b.length);
-		} else if (b==null){
-			tab = new String[a.length][];
-			System.arraycopy(a, 0, tab, 0, a.length);
-		} else {
-			tab = null;
-			System.out.println("Aucun doublon.");
-		}
-		return tab;
-	}
-
-
 	/* **************************************************************************************************************** */
 	public static String soundExEn(String s) { 
 		char[] x = s.toUpperCase().toCharArray();
@@ -154,6 +121,7 @@ public class Util_LinhDan {
 		return output.substring(0,4);
 	}
 	
+	/* **************************************************************************************************************** */
 	public static String soundExFr(String s) { 
 		char[] x = s.toUpperCase().toCharArray();
 		char firstLetter = x[0];
@@ -190,23 +158,22 @@ public class Util_LinhDan {
 			case 'R':
 				x[i] = '6';
 				break;
-			
+				
 			case 'G':
 			case 'J':
 				x[i] = '7';
 				break;
-				
+
+			case 'S':
 			case 'X':
 			case 'Z':
-			case 'S':
 				x[i] = '8';
 				break;
-				
+			
 			case 'F':
 			case 'V':
 				x[i] = '9';
 				break;
-
 			default:
 				x[i] = '0';
 				break;
@@ -220,10 +187,4 @@ public class Util_LinhDan {
 		output = output + "0000";
 		return output.substring(0,4);
 	}
-
-
-
-
-	/* **************************************************************************************************************** */
-
 }
