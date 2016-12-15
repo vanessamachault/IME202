@@ -2,7 +2,10 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Vanessa/_Master SITIS/IME202 Integration/Projet/mysql-connector-java-5.1.39-bin.jar"/>
 	<classpathentry kind="lib" path="C:/Vanessa/_Master SITIS/IME202 Integration/Projet/swingx-all-1.6.4.jar"/>
+	<classpathentry kind="lib" path="D:/Desktop/java-json.jar"/>
+	<classpathentry kind="lib" path="D:/Desktop/json-simple-1.1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Desktop/umls-uts-ws-client-classes-1.8.0.RELEASE.jar"/>
+	<classpathentry kind="lib" path="D:/Desktop/M2 SITIS/UE_INF_201/Algorythmique/Utilitaires/Connexion/mysql-connector-java-5.1.39-bin.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
