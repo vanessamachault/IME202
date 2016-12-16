@@ -30,11 +30,17 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.HyperlinkListener;
+
+import Importation.Utilities;
 
 @SuppressWarnings("serial")
 public class FAccueil extends JFrame {
 	
+	static int erreur = 0;
+		
 	private Container accueil = new FBienvenue().createAndShowFBienvenue();
 	private Container bienvenue;
 	private Container importation;
@@ -66,8 +72,8 @@ public class FAccueil extends JFrame {
 		initUI();
 	}
 
-	private final void initUI() throws IOException{
-		
+	private final void initUI() throws IOException {
+				
 		WindowUtilities.setNativeLookAndFeel();		
 		setTitle("Accueil ETL Cancer"); 
 		
@@ -78,7 +84,7 @@ public class FAccueil extends JFrame {
 		
 		// Personnalisation de l'icone
 		this.setIconImage(logo.getImage());
-				
+		
 		//this.getContentPane().setPreferredSize(new Dimension(800, 800));;
 		//this.getContentPane().add(accueil);
 		//this.getContentPane().setVisible(true);
@@ -106,9 +112,7 @@ public class FAccueil extends JFrame {
 		menuAPropos.add(itemAPropos1);
 		
 		setJMenuBar(menuBar);
-		
-		
-	
+				
 		itemAccueil1.addActionListener(new ActionListener() {
 			 public void actionPerformed(ActionEvent e)
 			{
@@ -135,7 +139,12 @@ public class FAccueil extends JFrame {
 				// Suppression du component affiché
 				panel.remove(getContentPane().getComponent(0));
 				// Appel de la page d'importation
-				importation = new FImportation().createAndShowFImportation();
+				try {
+					importation = new FImportation().createAndShowFImportation();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				panel.add(importation, BorderLayout.CENTER);
 				panel.revalidate();
 				panel.repaint();
@@ -161,45 +170,9 @@ public class FAccueil extends JFrame {
 				JOptionPane.showMessageDialog(null,"ETL Cancer version 1.0");
 				}
 			});
-		
-
-		
-		//tabbedPane();
 	}	
 	
-	/** ************************************************ JMenuBar Interface *****************************************************  **/
-	
-	/** ************************************************ JMenuBar Interface *****************************************************  **/
 
-	
-	/** ************************************************ TabbedPane Interface *****************************************************  **/
-	private void tabbedPane() throws IOException {		
-		// Création du menu de gauche
-		JTabbedPane tab = new JTabbedPane(JTabbedPane.LEFT);
-		/** ********************************** TabbedPane "Home" with HTML link ***************************************************  **/
-		//Container bienvenue = new FBienvenue();
-		//tab.addTab("", new ImageIcon("img\\recherche_fma.png"),bienvenue);
-
-		
-		/** ********************************** TabbedPane "Index" ***************************************************  **/
-/*		JTabbedPane tabIndex = new JTabbedPane(JTabbedPane.LEFT);	
-		Container indexFr = new IndexTestFR().createAndShowGUIFR();
-		tabIndex.addTab("", new ImageIcon("img\\fr.png"), indexFr);
-		Container indexENG = new IndexTestENG().createAndShowGUIENG();
-		tabIndex.addTab("", new ImageIcon("img\\eng.png"), indexENG);
-		Container indexBILINGUE = new IndexTestBILINGUE().createAndShowGUIBILINGUE();
-		tabIndex.addTab("", new ImageIcon("img\\bilingue.png"), indexBILINGUE);*/
-		
-		//tab.addTab("", new ImageIcon("img\\indexation.png"), tabIndex);
-		
-		/** ********************************** TabbedPane "FMA" ***************************************************  **/		
-		//Container searchbEng = new Recherche().RechercheENG();
-		///tab.addTab("", new ImageIcon("img\\recherche_fma.png"), searchbEng);
-				
-		/** ********************************** TabbedPane  ***************************************************  **/		
-		getContentPane().add(tab);
-	}
-	
 	public static JPanel setBackgroundImage(JFrame frame, final File img) throws IOException
 	{
 	        JPanel panel = new JPanel()
@@ -214,18 +187,26 @@ public class FAccueil extends JFrame {
 	                        super.paintComponent(g);
 	                        g.drawImage(buf, 0,0, null);
 	                }
-	        };
-	       
-	        frame.setContentPane(panel);
-	       
+	        };       
+	        frame.setContentPane(panel);       
 	        return panel;
 	}
 
 	public static void main(String[] args) {
+		
 		SwingUtilities.invokeLater(
 				new Runnable(){
 					public void run(){
 						try{
+							// Avant de lancer l'appli on vérifie que la BDD existe bien
+							// et que EasyPHP est bien lancé
+							Utilities.CreateBDD("root", "");
+							}catch(Exception erreurbase){
+							JOptionPane.showMessageDialog(null, "Erreur de connexion a la base de donnees");
+							erreur=1;
+							}
+							if (erreur == 0){
+							try{							
 							FAccueil ex = new FAccueil();
 							ex.setVisible(true);
 							ex.setSize(new Dimension(1000, 800));
@@ -236,7 +217,8 @@ public class FAccueil extends JFrame {
 							ex.setLocation(dim.width/2-ex.getSize().width/2, dim.height/2-ex.getSize().height/2);
 							
 							}catch(Exception e){
-							JOptionPane.showMessageDialog(null, "Erreur d'initialisation.");
+							JOptionPane.showMessageDialog(null, "Erreur d'initialisation");
+							}
 						}
 					}
 				}

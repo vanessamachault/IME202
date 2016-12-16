@@ -1,7 +1,16 @@
 package Interface;
+import java.awt.Component;
+
 import javax.swing.*;
 
 public class WindowUtilities {
+	
+	public static void refresh(JPanel content){
+		
+		content.getParent().revalidate();
+		content.getParent().repaint();
+				
+	}
 	
   public static void setNativeLookAndFeel() {
     try {
