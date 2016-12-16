@@ -141,6 +141,10 @@ public class Utilities {
 					System.err.println("Caught SQL Exception - " + e.getMessage());
 					e.printStackTrace();
 				}
+				
+				//Importation des tables de trascodages
+				ImportCsv.loadCSV_ADICAP_CIMO3("./Ressources/Tables_Transcodage/transcodageVianneyLesionADICAP_CIMO3Morpho.csv");
+				ImportCsv.loadCSV_CIM101_CUI("./Ressources/Tables_Transcodage/transcodageVianneyCUI_CIMO3.csv");
 
 				stmt.close();
 				conn.close();

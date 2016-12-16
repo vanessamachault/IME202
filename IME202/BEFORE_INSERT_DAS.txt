@@ -1,0 +1,7 @@
+CREATE TRIGGER `BEFORE_INSERT_ON_DAS` BEFORE INSERT ON `das` FOR EACH ROW BEGIN
+	IF
+		LEFT(NEW.das,1) != 'C'
+			THEN
+      		SET NEW.Flag_Integration_DAS='2';
+  END IF;
+END
