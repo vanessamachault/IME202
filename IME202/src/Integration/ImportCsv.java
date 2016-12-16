@@ -55,5 +55,49 @@ public class ImportCsv
 		}
 	}
 
+	public static void loadCSV_libelle_CIMO3_Topo(String csv)
+	{
+		try {
+			//Connexion à la base de donnée
+			String url= "jdbc:mysql://localhost/projet_ime_202";
+			String user="root";
+			String motpasse="";
+
+			Connexion connect = new Connexion (url, user, motpasse);
+			Connection con = connect.getCon();
+
+			String loadQuery = "LOAD DATA LOCAL INFILE '" + csv + "' INTO TABLE libelle_cimo3_topo FIELDS TERMINATED BY ';'" + " LINES TERMINATED BY '\n' (Code_CIMO3_Topo, Libelle_CIMO3_Topo) ";
+			System.out.println(loadQuery);
+			Statement stmt = con.createStatement();
+			stmt.execute(loadQuery);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+
+	public static void loadCSV_libelle_CIMO3_Morpho(String csv)
+	{
+		try {
+			//Connexion à la base de donnée
+			String url= "jdbc:mysql://localhost/projet_ime_202";
+			String user="root";
+			String motpasse="";
+
+			Connexion connect = new Connexion (url, user, motpasse);
+			Connection con = connect.getCon();
+
+			String loadQuery = "LOAD DATA LOCAL INFILE '" + csv + "' INTO TABLE libelle_cimo3_morpho FIELDS TERMINATED BY ';'" + " LINES TERMINATED BY '\n' (Code_CIMO3_Morpho, Libelle_CIMO3_Morpho) ";
+			System.out.println(loadQuery);
+			Statement stmt = con.createStatement();
+			stmt.execute(loadQuery);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }
 

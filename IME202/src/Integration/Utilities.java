@@ -145,6 +145,8 @@ public class Utilities {
 				//Importation des tables de trascodages
 				ImportCsv.loadCSV_ADICAP_CIMO3("./Ressources/Tables_Transcodage/transcodageVianneyLesionADICAP_CIMO3Morpho.csv");
 				ImportCsv.loadCSV_CIM101_CUI("./Ressources/Tables_Transcodage/transcodageVianneyCUI_CIMO3.csv");
+				ImportCsv.loadCSV_libelle_CIMO3_Topo("./Ressources/Tables_Traduction/libelle_CIMO3_Topo.csv");
+				ImportCsv.loadCSV_libelle_CIMO3_Morpho("./Ressources/Tables_Traduction/libelle_CIMO3_Morpho.csv");
 
 				stmt.close();
 				conn.close();
