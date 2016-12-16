@@ -183,6 +183,12 @@ CREATE TABLE `libelle_cimo3_morpho` (`NumAuto` int(11) NOT NULL, `Code_CIMO3_Mor
 
 CREATE TABLE `libelle_cimo3_topo` (`NumAuto` int(11) NOT NULL, `Code_CIMO3_Topo` varchar(5) NOT NULL, `Libelle_CIMO3_Topo` varchar(250) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Structure de la table `libelle_cim10`
+--
+
+CREATE TABLE `libelle_cim10` (`NumAuto` int(11) NOT NULL, `Code_CIM10` varchar(5) NOT NULL, `Libelle_CIM10` varchar(250) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
 
 --
 -- Index pour les tables exportées
@@ -290,6 +296,11 @@ ALTER TABLE `libelle_cimo3_morpho` ADD PRIMARY KEY (`NumAuto`);
 ALTER TABLE `libelle_cimo3_topo` ADD PRIMARY KEY (`NumAuto`);
 
 --
+-- Index pour la table `libelle_cim10`
+--
+ALTER TABLE `libelle_cim10` ADD PRIMARY KEY (`NumAuto`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
@@ -376,6 +387,12 @@ ALTER TABLE `libelle_cimo3_morpho` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREM
 -- AUTO_INCREMENT pour la table `libelle_cimo3_topo`
 --
 ALTER TABLE `libelle_cimo3_topo` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
+
+--
+-- AUTO_INCREMENT pour la table `libelle_cim10`
+--
+ALTER TABLE `libelle_cim10` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12423;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

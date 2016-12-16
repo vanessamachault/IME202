@@ -99,5 +99,27 @@ public class ImportCsv
 		}
 	}
 	
+	public static void loadCSV_libelle_CIM10(String csv)
+	{
+		try {
+			//Connexion à la base de donnée
+			String url= "jdbc:mysql://localhost/projet_ime_202";
+			String user="root";
+			String motpasse="";
+
+			Connexion connect = new Connexion (url, user, motpasse);
+			Connection con = connect.getCon();
+
+			String loadQuery = "LOAD DATA LOCAL INFILE '" + csv + "' INTO TABLE libelle_cim10 FIELDS TERMINATED BY ';'" + " LINES TERMINATED BY '\n' (Code_CIM10, Libelle_CIM10) ";
+			System.out.println(loadQuery);
+			Statement stmt = con.createStatement();
+			stmt.execute(loadQuery);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 }
 

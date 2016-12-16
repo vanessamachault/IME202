@@ -147,6 +147,7 @@ public class Utilities {
 				ImportCsv.loadCSV_CIM101_CUI("./Ressources/Tables_Transcodage/transcodageVianneyCUI_CIMO3.csv");
 				ImportCsv.loadCSV_libelle_CIMO3_Topo("./Ressources/Tables_Traduction/libelle_CIMO3_Topo.csv");
 				ImportCsv.loadCSV_libelle_CIMO3_Morpho("./Ressources/Tables_Traduction/libelle_CIMO3_Morpho.csv");
+				ImportCsv.loadCSV_libelle_CIM10("./Ressources/Tables_Traduction/libelle_CIM10.csv");
 
 				stmt.close();
 				conn.close();
