@@ -141,13 +141,6 @@ public class Utilities {
 					System.err.println("Caught SQL Exception - " + e.getMessage());
 					e.printStackTrace();
 				}
-				
-				//Importation des tables de trascodages
-				ImportCsv.loadCSV_ADICAP_CIMO3("./Ressources/Tables_Transcodage/transcodageVianneyLesionADICAP_CIMO3Morpho.csv");
-				ImportCsv.loadCSV_CIM101_CUI("./Ressources/Tables_Transcodage/transcodageVianneyCUI_CIMO3.csv");
-				ImportCsv.loadCSV_libelle_CIMO3_Topo("./Ressources/Tables_Traduction/libelle_CIMO3_Topo.csv");
-				ImportCsv.loadCSV_libelle_CIMO3_Morpho("./Ressources/Tables_Traduction/libelle_CIMO3_Morpho.csv");
-				ImportCsv.loadCSV_libelle_CIM10("./Ressources/Tables_Traduction/libelle_CIM10.csv");
 
 				stmt.close();
 				conn.close();
@@ -227,6 +220,8 @@ public class Utilities {
 		String CIM_O_3_Morpho = null;
 		String prelevement = null;
 		String technique = null;
+		String organe = null;
+		String lesion = null;
 
 		JSONArray jsonArray = new JSONArray(Utilities.callURL(codeADICAP).toString());
 
@@ -259,6 +254,31 @@ public class Utilities {
 				technique = structureTech.get("LIBELLE").toString();
 			} else {
 				System.out.println("	Technique non retrouvée dans la classification ADICAP.");
+			}
+
+			//Traitement organe
+			JSONArray jsonArrayOrgane = new JSONArray(jsonArray.getJSONArray(2).toString(2));
+			JSONObject jsonObjectOrgane = (JSONObject) jsonParser.parse(jsonArrayOrgane.get(1).toString());
+			if (jsonObjectOrgane.get("attributes") != null){
+				JSONObject structureOrgane = (JSONObject) jsonObjectOrgane.get("attributes");
+				//System.out.println("	Technique : " + structureOrgane.get("LIBELLE"));
+				organe = structureOrgane.get("LIBELLE").toString();
+			}else {
+				//System.out.println("	CIM O-3 topo : Code non traduit à partir de la classification ADICAP.");
+			}
+
+			//Traitement morphologie
+			JSONArray jsonArrayMorpho = new JSONArray(jsonArray.getJSONArray(3).toString(3));
+			if (jsonArrayMorpho.get(1).getClass().toString().equalsIgnoreCase("class org.json.JSONObject")){
+				JSONObject jsonObjectMorpho = (JSONObject) jsonParser.parse(jsonArrayMorpho.get(1).toString());
+				if (jsonObjectMorpho.get("attributes") != null){
+					JSONObject structureMorpho = (JSONObject) jsonObjectMorpho.get("attributes");
+					//System.out.println("	Lésion : " + structureMorpho.get("LIBELLE"));
+					lesion = structureMorpho.get("LIBELLE").toString();
+				}else {
+					//System.out.println("	CIM O-3 morpho : Code non traduit à partir de la classification ADICAP.");
+				}
+
 			}
 		}
 
@@ -312,20 +332,20 @@ public class Utilities {
 		}
 
 		if (traduction == 1 && transcodage == 1){
-			String result = prelevement + "|" + technique + "|" + CIM_O_3_Topo + "|" + CIM_O_3_Morpho;
-			System.out.println(result);
+			String result = prelevement + "|" + technique + "|" + organe + "|" + lesion + "|" + CIM_O_3_Topo + "|" + CIM_O_3_Morpho;
+			//System.out.println(result);
 			String [] transcodage_ADICAP = null;
-			transcodage_ADICAP = result.split("\\|");		
+			transcodage_ADICAP = result.split("\\|");
 
 			return transcodage_ADICAP;
 		}
 
 		if (traduction == 1 && transcodage == 0){
-			String result = prelevement + "|" + technique;
-			System.out.println(result);
+			String result = prelevement + "|" + technique + "|" + organe + "|" + lesion;
+			//System.out.println(result);
 			String [] transcodage_ADICAP = null;
-			transcodage_ADICAP = result.split("\\|");		
-
+			transcodage_ADICAP = result.split("\\|");
+			
 			return transcodage_ADICAP;
 		}
 

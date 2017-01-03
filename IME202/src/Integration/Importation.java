@@ -113,7 +113,7 @@ public class Importation {
 							lignePMSI = lignePMSI + splitArrayBDD[i];
 						}
 						for (int i = 18 ; i < 21 ; i++){
-							if (!splitArrayBDD[i].isEmpty() && splitArrayBDD[i].substring(0, 1).equalsIgnoreCase("C")){
+							if (!splitArrayBDD[i].isEmpty() && (splitArrayBDD[i].substring(0, 1).equalsIgnoreCase("C") || splitArrayBDD[i].substring(0, 2).equalsIgnoreCase("D0"))){
 								if (splitArrayBDD[i].length() > 3) {
 									code_CIM10 = splitArrayBDD[i].substring(0, 3) + "." + splitArrayBDD[i].substring(3, 4);
 									prepare_temp.setString(i + 1, code_CIM10);
@@ -272,7 +272,7 @@ public class Importation {
 							ligneDAS = ligneDAS + splitArray[i];
 						}
 						for (int i = 1; i < 2; i++) {
-							if (!splitArray[i].isEmpty() && splitArray[i].substring(0, 1).equalsIgnoreCase("C")){
+							if (!splitArray[i].isEmpty() && (splitArray[i].substring(0, 1).equalsIgnoreCase("C") || splitArray[i].substring(0, 2).equalsIgnoreCase("D0"))){
 								if (splitArray[i].length() > 3) {
 									code_CIM10 = splitArray[i].substring(0, 3) + "." + splitArray[i].substring(3, 4);
 									prepare_temp.setString(i + 1, code_CIM10);

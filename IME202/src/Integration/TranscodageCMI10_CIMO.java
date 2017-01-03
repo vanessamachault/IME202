@@ -48,7 +48,7 @@ public class TranscodageCMI10_CIMO {
 
 		//Méthode pour associer la ligne à la bonne personne
 		ajoutCorrespondanceCIM10_CIMO3();
-		
+
 
 		System.out.print("\nDurée d'exécution : " + (System.currentTimeMillis() - debut) / 1000);
 		System.out.print(" secondes");
@@ -72,9 +72,9 @@ public class TranscodageCMI10_CIMO {
 		Statement st = null;
 
 		//La requête de sélection des codes adicap à transcoder
-		String query = "SELECT DISTINCT DP FROM `sejour` WHERE DP like 'C%' AND DP NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls) "
-				+ "UNION SELECT DISTINCT DR FROM `sejour` WHERE DR like 'C%' AND DR NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls) "
-				+ "UNION SELECT DISTINCT DAS FROM `das` WHERE das like 'C%' AND DAS NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls);";
+		String query = "SELECT DISTINCT DP FROM `sejour` WHERE (DP like 'C%' OR DP like 'D0%') AND DP NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls) "
+				+ "UNION SELECT DISTINCT DR FROM `sejour` WHERE (DR like 'C%' OR DR like 'D0%') AND DR NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls) "
+				+ "UNION SELECT DISTINCT DAS FROM `das` WHERE (das like 'C%' OR das like 'D0%') AND DAS NOT IN (SELECT CIM10 FROM transcodage_cim10_cui_umls);";
 
 		String query2 = "insert into transcodage_cim10_cui_umls (CIM10, CUI) VALUES (?, ?);";
 		PreparedStatement prepare2 = con.prepareStatement(query2);
@@ -220,7 +220,7 @@ public class TranscodageCMI10_CIMO {
 		con.commit();
 	}
 
-	
+
 	//Permet d'identifier les transcodes à valider manuellement du au fait qu'il existe plusieurs correspondance CUI -> CIM10
 	public static void listeTranscodageCIM_10_CIMO_3_a_valider_CUI_doublon() throws SQLException{
 
@@ -248,7 +248,7 @@ public class TranscodageCMI10_CIMO {
 
 		System.out.println("Liste des codes dont il existe plusieurs CUI dans la table de transcodage de Vianney");
 		System.out.println("CIM10 | CUI | CIMO3_Topo | Cimo3Morpho");
-		
+
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
@@ -266,7 +266,6 @@ public class TranscodageCMI10_CIMO {
 		}
 
 	}
-	
 
 	//Permet d'obtenir la liste des transcodes CIM10/CIMO3 à valider
 	public static ArrayList<String> listeTranscodageCIM10_CIMO3_a_valider() throws SQLException{
@@ -284,30 +283,91 @@ public class TranscodageCMI10_CIMO {
 
 		Statement st = null;
 
-		/*SELECT DISTINCT transcodage_cim10_cui_umls.CUI, transcodage_vianey_cui_cimo3.CIMO3_Topo, transcodage_vianey_cui_cimo3.CIMO3_Morpho FROM transcodage_cim10_cui_umls INNER JOIN transcodage_vianey_cui_cimo3 ON transcodage_cim10_cui_umls.CUI = transcodage_vianey_cui_cimo3.CUI WHERE transcodage_cim10_cui_umls.CUI NOT IN (
-			    SELECT CUI FROM transcodage_cim10_cimo3_valides)
-			AND transcodage_cim10_cui_umls.CUI NOT IN (
-			    SELECT retrotranscodage_cui_cim10.CUI FROM retrotranscodage_cui_cim10
-				GROUP BY CUI HAVING count(retrotranscodage_cui_cim10.CIM10) = 1 AND retrotranscodage_cui_cim10.CUI
-				NOT IN (
-			        SELECT DISTINCT transcodage_cim10_cimo3_valides.CUI FROM transcodage_cim10_cimo3_valides)
-				AND retrotranscodage_cui_cim10.CUI IN (SELECT CUI FROM transcodage_vianey_cui_cimo3)
-			);*/
-		
-		//La requête de sélection des codes à valider
-		String query = "SELECT transcodage_cim10_cui_umls.CIM10, retrotranscodage_cui_cim10.CUI, transcodage_vianey_cui_cimo3.CIMO3_Topo, "
-				+ "transcodage_vianey_cui_cimo3.CIMO3_Morpho, retrotranscodage_cui_cim10.CIM10 FROM retrotranscodage_cui_cim10 INNER JOIN transcodage_cim10_cui_umls "
+		//On valide les codes dont le statut de doublon est dû à des codes aspécifiques
+		String query = "SELECT DISTINCT retrotranscodage_cui_cim10.CUI FROM retrotranscodage_cui_cim10 INNER JOIN transcodage_cim10_cui_umls "
 				+ "ON retrotranscodage_cui_cim10.CUI=transcodage_cim10_cui_umls.CUI INNER JOIN transcodage_vianey_cui_cimo3 "
 				+ "ON retrotranscodage_cui_cim10.CUI = transcodage_vianey_cui_cimo3.CUI WHERE retrotranscodage_cui_cim10.CUI "
 				+ "NOT IN (SELECT DISTINCT transcodage_cim10_cimo3_valides.CUI FROM transcodage_cim10_cimo3_valides) "
-				+ "AND retrotranscodage_cui_cim10.CUI IN (SELECT CUI FROM transcodage_vianey_cui_cimo3)";
+				+ "AND retrotranscodage_cui_cim10.CUI IN (SELECT CUI FROM transcodage_vianey_cui_cimo3 GROUP BY CUI HAVING count(CUI)=1);";
+
+		String query2 = "SELECT DISTINCT retrotranscodage_cui_cim10.CUI, transcodage_vianey_cui_cimo3.CIMO3_Topo, transcodage_vianey_cui_cimo3.CIMO3_Morpho, "
+				+ "retrotranscodage_cui_cim10.CIM10 FROM retrotranscodage_cui_cim10 INNER JOIN transcodage_cim10_cui_umls "
+				+ "ON retrotranscodage_cui_cim10.CUI=transcodage_cim10_cui_umls.CUI INNER JOIN transcodage_vianey_cui_cimo3 "
+				+ "ON retrotranscodage_cui_cim10.CUI = transcodage_vianey_cui_cimo3.CUI WHERE retrotranscodage_cui_cim10.CUI "
+				+ "NOT IN (SELECT DISTINCT transcodage_cim10_cimo3_valides.CUI FROM transcodage_cim10_cimo3_valides) AND "
+				+ "retrotranscodage_cui_cim10.CUI IN (SELECT CUI FROM transcodage_vianey_cui_cimo3) AND retrotranscodage_cui_cim10.CUI = ? AND retrotranscodage_cui_cim10.CIM10 NOT LIKE '%-%'";
+
+		String query3 = "INSERT INTO transcodage_cim10_cimo3_valides (CUI, CIM10, CIMO3_Topo, CIMO3_Morpho) VALUES (?, ?, ?, ?);";
+
+		PreparedStatement prepare = con.prepareStatement(query2);
+		PreparedStatement prepare3 = con.prepareStatement(query3);
+
 
 		try {
 			st = con.createStatement();
 			ResultSet rs = st.executeQuery(query);
-			System.out.println("CIM10 | CUI | RétrostrancodageCIM10 | CIMO3_Topo | Cimo3Morpho ");
 			while (rs.next()) {
-				tanscode_CIM10_CIMO3_a_valider = rs.getString("CIM10") + "|" + rs.getString("CUI") + "|" + rs.getString(5) + "|" + rs.getString("CIMO3_Topo") + "|" + rs.getString("CIMO3_Morpho");
+				try {
+					prepare.setString(1, rs.getString("CUI"));
+					ResultSet rs2 = prepare.executeQuery();
+
+					rs2.last(); 
+					int nb_resultat = rs2.getRow();
+
+					rs2.first();
+
+					if (nb_resultat == 2){
+						String CIM10_1 = rs2.getString("CIM10");
+						rs2.next();
+						String CIM10_2 = rs2.getString("CIM10");
+
+						prepare3.setString(1, rs2.getString("CUI"));
+						prepare3.setString(2, CIM10_1);
+						prepare3.setString(3, rs2.getString("CIMO3_Topo"));
+						prepare3.setString(4, rs2.getString("CIMO3_Morpho"));
+						prepare3.executeUpdate();
+
+						prepare3.setString(1, rs2.getString("CUI"));
+						prepare3.setString(2, CIM10_2);
+						prepare3.setString(3, rs2.getString("CIMO3_Topo"));
+						prepare3.setString(4, rs2.getString("CIMO3_Morpho"));
+						prepare3.executeUpdate();
+
+
+					}else if (nb_resultat == 1){
+						String CIM10_1 = rs2.getString("CIM10");
+
+						prepare3.setString(1, rs2.getString("CUI"));
+						prepare3.setString(2, CIM10_1);
+						prepare3.setString(3, rs2.getString("CIMO3_Topo"));
+						prepare3.setString(4, rs2.getString("CIMO3_Morpho"));
+						prepare3.executeUpdate();
+					}
+
+				}catch (SQLException e1) {
+					e1.printStackTrace();
+				}
+
+
+			}
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		//La requête de sélection des codes à valider
+		String query1 = "SELECT DISTINCT transcodage_cim10_cui_umls.CIM10, retrotranscodage_cui_cim10.CUI, transcodage_vianey_cui_cimo3.CIMO3_Topo, "
+				+ "transcodage_vianey_cui_cimo3.CIMO3_Morpho, retrotranscodage_cui_cim10.CIM10 FROM retrotranscodage_cui_cim10 INNER JOIN transcodage_cim10_cui_umls "
+				+ "ON retrotranscodage_cui_cim10.CUI=transcodage_cim10_cui_umls.CUI INNER JOIN transcodage_vianey_cui_cimo3 "
+				+ "ON retrotranscodage_cui_cim10.CUI = transcodage_vianey_cui_cimo3.CUI WHERE retrotranscodage_cui_cim10.CUI "
+				+ "NOT IN (SELECT DISTINCT transcodage_cim10_cimo3_valides.CUI FROM transcodage_cim10_cimo3_valides) "
+				+ "AND retrotranscodage_cui_cim10.CUI IN (SELECT CUI FROM transcodage_vianey_cui_cimo3) AND retrotranscodage_cui_cim10.CIM10 NOT LIKE '%-%'";
+
+		try {
+			st = con.createStatement();
+			ResultSet rs1 = st.executeQuery(query1);
+			System.out.println("CIM10 | CUI | RétrostrancodageCIM10 | CIMO3_Topo | Cimo3Morpho ");
+			while (rs1.next()) {
+				tanscode_CIM10_CIMO3_a_valider = rs1.getString("CIM10") + "|" + rs1.getString("CUI") + "|" + rs1.getString(5) + "|" + rs1.getString("CIMO3_Topo") + "|" + rs1.getString("CIMO3_Morpho");
 				tanscodes_CIM10_CIMO3_a_valider.add(tanscode_CIM10_CIMO3_a_valider);				
 			}
 		}catch (SQLException e1) {

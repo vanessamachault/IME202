@@ -8,11 +8,14 @@ public class ImportCsv
 	{
 		loadCSV_ADICAP_CIMO3("./Ressources/Tables_Transcodage/transcodageVianneyLesionADICAP_CIMO3Morpho.csv");
 		loadCSV_CIM101_CUI("./Ressources/Tables_Transcodage/transcodageVianneyCUI_CIMO3.csv");
+		loadCSV_libelle_CIMO3_Topo("./Ressources/Tables_Traduction/libelle_CIMO3_Topo.csv");
+		loadCSV_libelle_CIMO3_Morpho("./Ressources/Tables_Traduction/libelle_CIMO3_Morpho.csv");
+		loadCSV_libelle_CIM10("./Ressources/Tables_Traduction/libelle_CIM10.csv");
+
 	}
 
-
-	public static void loadCSV_ADICAP_CIMO3(String csv)
-	{
+	
+	public static void loadCSV_ADICAP_CIMO3(String csv){
 		try {
 			//Connexion à la base de donnée
 			String url= "jdbc:mysql://localhost/projet_ime_202";
@@ -33,8 +36,7 @@ public class ImportCsv
 		}
 	}
 	
-	public static void loadCSV_CIM101_CUI(String csv)
-	{
+	public static void loadCSV_CIM101_CUI(String csv){
 		try {
 			//Connexion à la base de donnée
 			String url= "jdbc:mysql://localhost/projet_ime_202";
@@ -54,9 +56,8 @@ public class ImportCsv
 			e.printStackTrace();
 		}
 	}
-
-	public static void loadCSV_libelle_CIMO3_Topo(String csv)
-	{
+	
+	public static void loadCSV_libelle_CIMO3_Topo(String csv){
 		try {
 			//Connexion à la base de donnée
 			String url= "jdbc:mysql://localhost/projet_ime_202";
@@ -77,8 +78,7 @@ public class ImportCsv
 		}
 	}
 
-	public static void loadCSV_libelle_CIMO3_Morpho(String csv)
-	{
+	public static void loadCSV_libelle_CIMO3_Morpho(String csv){
 		try {
 			//Connexion à la base de donnée
 			String url= "jdbc:mysql://localhost/projet_ime_202";

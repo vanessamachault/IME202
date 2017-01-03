@@ -37,10 +37,49 @@ public class TranscodageADICAP_CIMO {
 		ArrayList<String> test2 = new ArrayList<String>();
 		test2.addAll(test);
 
-		//System.out.println("\n\nListe des codes à valider :");
+		System.out.println("\n\nListe des transcodages ADICAP à valider (disjonction de transcodage) :");
 		for (int i = 0 ; i < test2.size() ; i++){
 			System.out.println(test2.get(i));
 		}
+
+		//Permet d'obtenir la liste des transcode ADICAP sans transcodage
+		ArrayList<String> codes_adicap_non_traduit = transcodage_ADICAP_CIMO3_non_traduit();
+
+		System.out.println("\n\nListe des codes ADICAP non traduit :");
+		for (int i = 0; i < codes_adicap_non_traduit.size(); i++){
+			System.out.println("	-" + codes_adicap_non_traduit.get(i));
+		}
+
+	}
+
+	public static ArrayList<String> transcodage_ADICAP_CIMO3_non_traduit() {
+
+		ArrayList <String> liste_code_ADICAP_sans_traduction = new ArrayList<String>();
+
+		//Connexion à la base de donnée
+		String url= "jdbc:mysql://localhost/projet_ime_202";
+		String user="root";
+		String motpasse="";
+
+		Connexion connect = new Connexion (url, user, motpasse);
+		Connection con = connect.getCon();
+		Statement st = null;
+
+		//La requête de sélection des codes adicap à transcoder
+		String query = "SELECT DISTINCT `Adicap` FROM `adicap` WHERE `Flag_Integration`= '0'";
+
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()) {
+				liste_code_ADICAP_sans_traduction.add(rs.getString("adicap"));
+			}
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+
+		return liste_code_ADICAP_sans_traduction;
+
 	}
 
 	public static Set<String> transcodage_ADICAP_CIMO3_a_valider() throws SQLException, JSONException, ParseException{
@@ -102,7 +141,7 @@ public class TranscodageADICAP_CIMO {
 					matcher = pattern.matcher(code_ADICAP_a_traiter);
 					if (matcher.find()){
 
-						//Transcodage des codes ADICAP (0 = pas de tarduction du code et 1 = transcodage du code)
+						//Transcodage des codes ADICAP (0 = pas de traduction du code et 1 = transcodage du code)
 						String[] transcodage = Utilities.transcodage_ADICAP_CIMO3(code_ADICAP_a_traiter, 0, 1);
 
 						String lesion = code_ADICAP_a_traiter.substring(4, 8);
@@ -200,6 +239,10 @@ public class TranscodageADICAP_CIMO {
 		//REGEX permettant de ne selectionner que les cancers et les codes incomplets (cf. AZ00 en remplacement des ****** et Z dans la REGEX)
 		Pattern pattern = Pattern.compile("^\\D{5}[4-7Z]");
 		Matcher matcher;
+
+		//REGEX permettant de ne selectionner les codes CIMO3 Morpho aspécifiques
+		Pattern pattern1 = Pattern.compile("^M-8000");
+		Matcher matcher1;
 
 		/*
 		//(Lesion|Transcodage_API|Transcodage_Vianey);
@@ -377,6 +420,18 @@ public class TranscodageADICAP_CIMO {
 										prepare4.addBatch();
 										prepare4.executeBatch();
 										con.commit();
+									}
+
+									//Cas où l'API et la table de transcodage de Vianey ne sont pas d'accord mais que le code de Vianney est plus précis
+									else if ((transcodage_ADICAP_CIMO3Morpho_API != null && transcodage_ADICAP_CIMO3Morpho_Vianey != null) && !transcodage_ADICAP_CIMO3Morpho_API.equalsIgnoreCase(transcodage_ADICAP_CIMO3Morpho_Vianey)){
+										matcher1 = pattern1.matcher(transcodage_ADICAP_CIMO3Morpho_API);
+										if (matcher1.find()){
+											prepare4.setString(1, lesion);
+											prepare4.setString(2, transcodage_ADICAP_CIMO3Morpho_Vianey);
+											prepare4.addBatch();
+											prepare4.executeBatch();
+											con.commit();
+										}
 									}
 
 									/*
