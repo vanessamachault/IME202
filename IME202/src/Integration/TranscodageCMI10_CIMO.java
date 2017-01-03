@@ -40,18 +40,56 @@ public class TranscodageCMI10_CIMO {
 		//Si le transcodage est jugé automatiquement valide, il est ajouté dans la table des transcodage valide
 		ajoutTranscodageCIM10_CUI_valides();
 
+		//Méthode pour associer la ligne à la bonne personne
+		ajoutCorrespondanceCIM10_CIMO3();
+
 		//Liste des transcodes à valider manuellement
 		ArrayList<String> test = listeTranscodageCIM10_CIMO3_a_valider();
+		System.out.println("Liste des codes PMSI dont il faut valider le transcodage : ");
 		for (int i = 0 ; i < test.size() ; i++){
 			System.out.println(test.get(i));
 		}
 
-		//Méthode pour associer la ligne à la bonne personne
-		ajoutCorrespondanceCIM10_CIMO3();
-
+		//Liste des codes non transcodés
+		ArrayList<String> test2 = liste_codes_PMSI_non_traduit();
+		System.out.println("Liste des codes PMSI non transcodés : ");
+		for (int i = 0 ; i < test2.size() ; i++){
+			System.out.println("	- " + test2.get(i));
+		}
 
 		System.out.print("\nDurée d'exécution : " + (System.currentTimeMillis() - debut) / 1000);
 		System.out.print(" secondes");
+	}
+
+	public static ArrayList<String> liste_codes_PMSI_non_traduit() throws SQLException, UtsFault_Exception{
+
+		ArrayList<String> liste_PMSI_non_traduit = new ArrayList<String>();
+		
+		//Connexion à la base de donnée
+		String url= "jdbc:mysql://localhost/projet_ime_202";
+		String user="root";
+		String motpasse="";
+
+		Connexion connect = new Connexion (url, user, motpasse);
+		Connection con = connect.getCon();
+		
+		Statement st = null;
+
+		String query = "SELECT DISTINCT sejour.DP AS 'Code PMSI' FROM sejour WHERE sejour.Flag_Integration_DP = 0 "
+				+ "UNION SELECT DISTINCT sejour.DR AS 'Code PMSI' FROM sejour WHERE sejour.Flag_Integration_DR = 0 "
+				+ "UNION SELECT DISTINCT das.DAS AS 'Code PMSI' FROM das WHERE das.Flag_Integration_DAS = 0";
+		
+		try {
+			st = con.createStatement();
+			ResultSet rs = st.executeQuery(query);
+			while (rs.next()) {
+				liste_PMSI_non_traduit.add(rs.getString("Code PMSI"));
+			}
+		}catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		
+		return liste_PMSI_non_traduit;
 	}
 
 	//Permet de transcoder les nouveau codes CIM10 ajoutés dans la base de donnée en CUI UMLS
@@ -412,13 +450,13 @@ public class TranscodageCMI10_CIMO {
 				+ "AND transcodage_cim10_cui_umls.CUI IN (SELECT transcodage_cim10_cimo3_valides.CUI FROM transcodage_cim10_cimo3_valides) "
 				+ "AND das.DAS = transcodage_cim10_cimo3_valides.CIM10;";
 
-		String queryAddDP = "INSERT INTO rel_dp_cimo3 (NumLigneDP, CIMO3_Correspondance) VALUES (?, ?)"; 
-		String queryAddDR = "INSERT INTO rel_dr_cimo3 (NumLigneDR, CIMO3_Correspondance) VALUES (?, ?)"; 
-		String queryAddDAS = "INSERT INTO rel_das_cimo3 (NumLigneDAS, CIMO3_Correspondance) VALUES (?, ?)"; 
+		String queryAddDP = "INSERT INTO rel_dp_cimo3 (NumLigneDP, CIMO3_Correspondance) VALUES (?, ?);"; 
+		String queryAddDR = "INSERT INTO rel_dr_cimo3 (NumLigneDR, CIMO3_Correspondance) VALUES (?, ?);"; 
+		String queryAddDAS = "INSERT INTO rel_das_cimo3 (NumLigneDAS, CIMO3_Correspondance) VALUES (?, ?);"; 
 
-		String queryIntegrationDP = "UPDATE sejour SET sejour.Flag_Integration_DP = 1 WHERE NumAutoSejour = ?";
-		String queryIntegrationDR = "UPDATE sejour SET sejour.Flag_Integration_DR = 1 WHERE NumAutoSejour = ?";
-		String queryIntegrationDAS = "UPDATE das SET das.Flag_Integration_DAS = 1 WHERE NumAutoDAS = ?";
+		String queryIntegrationDP = "UPDATE sejour SET sejour.Flag_Integration_DP = 1 WHERE NumAutoSejour = ?;";
+		String queryIntegrationDR = "UPDATE sejour SET sejour.Flag_Integration_DR = 1 WHERE NumAutoSejour = ?;";
+		String queryIntegrationDAS = "UPDATE das SET das.Flag_Integration_DAS = 1 WHERE NumAutoDAS = ?;";
 
 		prepareAddDP = con.prepareStatement(queryAddDP);
 		prepareAddDR = con.prepareStatement(queryAddDR);
