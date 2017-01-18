@@ -29,16 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `adicap` ( `NumAutoAdicap` int(11) NOT NULL, `NumAdicapPrel` int(11) NOT NULL, `Adicap` varchar(11) NOT NULL, `Flag_Integration` tinyint(1) NOT NULL DEFAULT '0', `Flag_Agregation` tinyint(1) NOT NULL DEFAULT '0') ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
--- --------------------------------------------------------
-
 --
 -- Structure de la table `adicap_prelevement`
 --
 
 CREATE TABLE `adicap_prelevement` ( `NumAutoAdicapPrel` int(11) NOT NULL, `NumPatient` int(11) NOT NULL, `Sexe` tinyint(1) NOT NULL, `DDN_Jour` tinyint(2) NOT NULL, `DDN_Mois` tinyint(2) NOT NULL, `DDN_Annee` smallint(4) NOT NULL, `Prenom` varchar(100) NOT NULL, `Nom` varchar(100) NOT NULL, `DatePrel_Jour` tinyint(2) NOT NULL, `DatePrel_Mois` tinyint(2) NOT NULL, `DatePrel_Annee` smallint(4) NOT NULL, `HashCode` int(11) NOT NULL, `Flag_Identification` tinyint(1) NOT NULL DEFAULT '0', `Flag_Integration` tinyint(1) NOT NULL DEFAULT '0', `Flag_Agregation` tinyint(1) NOT NULL DEFAULT '0') ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `das`
@@ -46,16 +41,11 @@ CREATE TABLE `adicap_prelevement` ( `NumAutoAdicapPrel` int(11) NOT NULL, `NumPa
 
 CREATE TABLE `das` ( `NumAutoDAS` int(11) NOT NULL, `NumSejour` int(11) NOT NULL, `DAS` varchar(10) NOT NULL, `HashCode` int(11) NOT NULL, `Flag_Integration_DAS` tinyint(1) NOT NULL DEFAULT '0', `Flag_Agregation` tinyint(1) NOT NULL DEFAULT '0') ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
--- --------------------------------------------------------
-
 --
 -- Structure de la table `rel_adicap_cimo3`
 --
 
 CREATE TABLE `rel_adicap_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneADICAP` int(11) NOT NULL, `CIMO3_Topo` int(11) DEFAULT NULL, `CIMO3_Morpho` int(11) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `rel_das_cimo3`
@@ -63,15 +53,11 @@ CREATE TABLE `rel_adicap_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneADIC
 
 CREATE TABLE `rel_das_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneDAS` int(11) NOT NULL, `CIMO3_Correspondance` int(11) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `rel_dp_cimo3`
 --
 
 CREATE TABLE `rel_dp_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneDP` int(11) NOT NULL, `CIMO3_Correspondance` int(11) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `rel_dr_cimo3`
@@ -79,24 +65,17 @@ CREATE TABLE `rel_dp_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneDP` int(
 
 CREATE TABLE `rel_dr_cimo3` ( `NumAutoCIMO3` int(11) NOT NULL, `NumLigneDR` int(11) NOT NULL, `CIMO3_Correspondance` int(11) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `retrotranscodage_cui_cim10`
 --
 
 CREATE TABLE `retrotranscodage_cui_cim10` ( `NumAuto` int(11) NOT NULL, `CUI` varchar(8) NOT NULL, `CIM10` varchar(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `sejour`
 --
 
 CREATE TABLE `sejour` ( `NumAutoSejour` int(11) NOT NULL, `NumPatient` int(6) NOT NULL, `Sexe` tinyint(1) NOT NULL, `DDN_Jour` tinyint(2) NOT NULL, `DDN_Mois` tinyint(2) NOT NULL, `DDN_Annee` smallint(4) NOT NULL, `Prenom` varchar(100) NOT NULL, `Nom` varchar(100) NOT NULL, `EDH_Jour` tinyint(2) NOT NULL, `EDH_Mois` tinyint(2) NOT NULL, `EDH_Annee` smallint(4) NOT NULL, `SDH_Jour` tinyint(2) NOT NULL, `SDH_Mois` tinyint(2) NOT NULL, `SDH_Annee` smallint(4) NOT NULL, `ED_Jour` tinyint(2) NOT NULL, `ED_Mois` tinyint(2) NOT NULL, `ED_Annee` smallint(4) NOT NULL, `SD_Jour` tinyint(2) NOT NULL, `SD_Mois` tinyint(2) NOT NULL, `SD_Annee` smallint(4) NOT NULL, `DP` varchar(10) NOT NULL, `DR` varchar(10) NOT NULL, `NumSejour` int(11) NOT NULL, `HashCode` int(11) NOT NULL, `Flag_Identification` tinyint(1) NOT NULL DEFAULT '0', `Flag_Integration_DP` tinyint(1) NOT NULL DEFAULT '0', `Flag_Integration_DR` tinyint(1) NOT NULL DEFAULT '0', `Flag_Agregation` tinyint(1) NOT NULL DEFAULT '0') ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `transcodage_adicap_cimo3_morpho_valides`
@@ -112,15 +91,11 @@ CREATE TABLE `transcodage_adicap_cimo3_morpho_valides` ( `NumAuto` int(11) NOT N
 
 CREATE TABLE `transcodage_adicap_cimo3_topo_valides` ( `NumAuto` int(11) NOT NULL, `Organe` varchar(2) NOT NULL, `CIMO3_Topo` varchar(5) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `transcodage_cim10_cimo3_valides`
 --
 
 CREATE TABLE `transcodage_cim10_cimo3_valides` ( `NumAuto` int(11) NOT NULL, `CUI` varchar(8) NOT NULL, `CIM10` varchar(5) NOT NULL, `CIMO3_Topo` varchar(5) NOT NULL, `CIMO3_Morpho` varchar(9) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `transcodage_cim10_cui_umls`
@@ -136,46 +111,35 @@ CREATE TABLE `transcodage_cim10_cui_umls` ( `NumAuto` int(11) NOT NULL, `CIM10` 
 
 CREATE TABLE `transcodage_vianey_cui_cimo3` ( `NumAuto` int(11) NOT NULL, `CUI` varchar(8) NOT NULL, `CIMO3_Topo` varchar(5) NOT NULL, `CIMO3_Morpho` varchar(9) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
 -- Structure de la table `transcodage_vianey_lesion_adicap_cimo3_morpho`
 --
 
 CREATE TABLE `transcodage_vianey_lesion_adicap_cimo3_morpho` ( `NumAuto` int(11) NOT NULL, `Lesion` varchar(4) NOT NULL, `CIMO3_Morpho` varchar(9) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
 --
 -- Structure de la table `patient`
 --
 
-CREATE TABLE `patient` ( `NumAutoPatient` int(10) NOT NULL, `Nom` varchar(100) DEFAULT NULL, `Prenom` varchar(100) DEFAULT NULL, `Sexe` int(2) DEFAULT NULL, `DDN_Jour` tinyint(2) DEFAULT NULL, `DDN_Mois` tinyint(2) DEFAULT NULL, `DDN_Annee` smallint(4) DEFAULT NULL, `hashPatient` int(10) DEFAULT NULL, `identite_principale` int(10) DEFAULT NULL, `flag_id` tinyint(1) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+CREATE TABLE `patient` (`NumAutoPatient` int(11) NOT NULL, `Nom` varchar(100) NOT NULL, `Prenom` varchar(100) NOT NULL, `Sexe` tinyint(2) NOT NULL, `DDN_Jour` tinyint(2) NOT NULL, `DDN_Mois` tinyint(2) NOT NULL, `DDN_Annee` smallint(4) NOT NULL, `hashPatient` int(11) NOT NULL, `identite_principale` int(11) NOT NULL, `flag_id` tinyint(1) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Structure de la table `rel_patient_acp`
 --
 
-CREATE TABLE `rel_patient_acp` ( `NumAutoSourceACP` int(10) NOT NULL, `NumPatient` int(10) DEFAULT NULL, `Ligne_ACP` int(10) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+CREATE TABLE `rel_patient_acp` (`NumAutoSourceACP` int(11) NOT NULL, `NumPatient` int(11) NOT NULL, `Ligne_ACP` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Structure de la table `rel_patient_pmsi`
 --
 
-CREATE TABLE `rel_patient_pmsi` ( `NumAutoSourcePMSI` int(10) NOT NULL, `NumPatient` int(10) DEFAULT NULL, `Ligne_PMSI` int(10) DEFAULT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
+CREATE TABLE `rel_patient_pmsi` (`NumAutoSourcePMSI` int(11) NOT NULL, `NumPatient` int(11) NOT NULL, `Ligne_PMSI` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Structure de la table `libelle_cimo3_morpho`
 --
 
 CREATE TABLE `libelle_cimo3_morpho` (`NumAuto` int(11) NOT NULL, `Code_CIMO3_Morpho` varchar(8) NOT NULL, `Libelle_CIMO3_Morpho` varchar(250) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Structure de la table `libelle_cimo3_topo`
@@ -188,6 +152,24 @@ CREATE TABLE `libelle_cimo3_topo` (`NumAuto` int(11) NOT NULL, `Code_CIMO3_Topo`
 --
 
 CREATE TABLE `libelle_cim10` (`NumAuto` int(11) NOT NULL, `Code_CIM10` varchar(5) NOT NULL, `Libelle_CIM10` varchar(250) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `notification`
+--
+
+CREATE TABLE `notification` (`ID_Notification` int(11) NOT NULL, `ID_Patient_Unique` int(11) NOT NULL, `Code_CIMO3_Topo` varchar(5) NOT NULL, `Code_CIMO3_Morpho` varchar(11) NOT NULL, `Notification_Date_Jour` tinyint(2) NOT NULL, `Notification_Date_Mois` tinyint(2) NOT NULL, `Notification_Date_Annee` smallint(4) NOT NULL, `Diagnostic_Date_Jour` tinyint(2) NOT NULL, `Diagnostic_Date_Mois` tinyint(2) NOT NULL, `Diagnostic_Date_Annee` smallint(4) NOT NULL, `Notification_Score` float NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `rel_notification_acp`
+--
+
+CREATE TABLE `rel_notification_acp` (`NumAutoNotificationACP` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_ACP` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `rel_notification_pmsi`
+--
+
+CREATE TABLE `rel_notification_pmsi` (`NumAutoNotificationPMSI` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_PMSI` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 --
@@ -208,7 +190,6 @@ ALTER TABLE `adicap_prelevement` ADD PRIMARY KEY (`NumAutoAdicapPrel`), ADD UNIQ
 -- Index pour la table `das`
 --
 ALTER TABLE `das` ADD PRIMARY KEY (`NumAutoDAS`), ADD UNIQUE KEY `NumAutoDAS` (`NumAutoDAS`);
-
 
 --
 -- Index pour la table `rel_adicap_cimo3`
@@ -301,97 +282,120 @@ ALTER TABLE `libelle_cimo3_topo` ADD PRIMARY KEY (`NumAuto`);
 ALTER TABLE `libelle_cim10` ADD PRIMARY KEY (`NumAuto`);
 
 --
+-- Index pour la table `notification`
+--
+ALTER TABLE `notification` ADD PRIMARY KEY (`ID_Notification`);
+
+--
+-- Index pour la table `rel_notification_acp`
+--
+ALTER TABLE `rel_notification_acp` ADD PRIMARY KEY (`NumAutoNotificationACP`);
+
+--
+-- Index pour la table `rel_notification_pmsi`
+--
+ALTER TABLE `rel_notification_pmsi` ADD PRIMARY KEY (`NumAutoNotificationPMSI`);
+
+--
 -- AUTO_INCREMENT pour les tables exportées
 --
 
 --
 -- AUTO_INCREMENT pour la table `adicap`
 --
-ALTER TABLE `adicap` MODIFY `NumAutoAdicap` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2775;
+ALTER TABLE `adicap` MODIFY `NumAutoAdicap` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `adicap_prelevement`
 --
-ALTER TABLE `adicap_prelevement` MODIFY `NumAutoAdicapPrel` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1436;
+ALTER TABLE `adicap_prelevement` MODIFY `NumAutoAdicapPrel` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `das`
 --
-ALTER TABLE `das` MODIFY `NumAutoDAS` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25290;
-
+ALTER TABLE `das` MODIFY `NumAutoDAS` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_adicap_cimo3`
 --
-ALTER TABLE `rel_adicap_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=454;
+ALTER TABLE `rel_adicap_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_das_cimo3`
 --
-ALTER TABLE `rel_das_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3120;
+ALTER TABLE `rel_das_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_dp_cimo3`
 --
-ALTER TABLE `rel_dp_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1247;
+ALTER TABLE `rel_dp_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_dr_cimo3`
 --
-ALTER TABLE `rel_dr_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3025;
+ALTER TABLE `rel_dr_cimo3` MODIFY `NumAutoCIMO3` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `retrotranscodage_cui_cim10`
 --
-ALTER TABLE `retrotranscodage_cui_cim10` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=280;
+ALTER TABLE `retrotranscodage_cui_cim10` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `sejour`
 --
-ALTER TABLE `sejour` MODIFY `NumAutoSejour` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8044;
+ALTER TABLE `sejour` MODIFY `NumAutoSejour` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_adicap_cimo3_morpho_valides`
 --
-ALTER TABLE `transcodage_adicap_cimo3_morpho_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+ALTER TABLE `transcodage_adicap_cimo3_morpho_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_adicap_cimo3_topo_valides`
 --
-ALTER TABLE `transcodage_adicap_cimo3_topo_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+ALTER TABLE `transcodage_adicap_cimo3_topo_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_cim10_cimo3_valides`
 --
-ALTER TABLE `transcodage_cim10_cimo3_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=210;
+ALTER TABLE `transcodage_cim10_cimo3_valides` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_cim10_cui_umls`
 --
-ALTER TABLE `transcodage_cim10_cui_umls` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=256;
+ALTER TABLE `transcodage_cim10_cui_umls` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_vianey_cui_cimo3`
 --
-ALTER TABLE `transcodage_vianey_cui_cimo3` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=612;
+ALTER TABLE `transcodage_vianey_cui_cimo3` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `transcodage_vianey_lesion_adicap_cimo3_morpho`
 --
-ALTER TABLE `transcodage_vianey_lesion_adicap_cimo3_morpho` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1581;
-
+ALTER TABLE `transcodage_vianey_lesion_adicap_cimo3_morpho` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `patient`
 --
-ALTER TABLE `patient` MODIFY `NumAutoPatient` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1003;
+ALTER TABLE `patient` MODIFY `NumAutoPatient` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_patient_acp`
 --
-ALTER TABLE `rel_patient_acp` MODIFY `NumAutoSourceACP` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1435;
+ALTER TABLE `rel_patient_acp` MODIFY `NumAutoSourceACP` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `rel_patient_pmsi`
 --
-ALTER TABLE `rel_patient_pmsi` MODIFY `NumAutoSourcePMSI` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8043;
-
+ALTER TABLE `rel_patient_pmsi` MODIFY `NumAutoSourcePMSI` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `libelle_cimo3_morpho`
 --
-ALTER TABLE `libelle_cimo3_morpho` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1033;
+ALTER TABLE `libelle_cimo3_morpho` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `libelle_cimo3_topo`
 --
-ALTER TABLE `libelle_cimo3_topo` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=329;
-
+ALTER TABLE `libelle_cimo3_topo` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `libelle_cim10`
 --
-ALTER TABLE `libelle_cim10` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12423;
+ALTER TABLE `libelle_cim10` MODIFY `NumAuto` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `notification`
+--
+ALTER TABLE `notification` MODIFY `ID_Notification` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `rel_notification_acp`
+--
+ALTER TABLE `rel_notification_acp` MODIFY `NumAutoNotificationACP` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `rel_notification_pmsi`
+--
+ALTER TABLE `rel_notification_pmsi` MODIFY `NumAutoNotificationPMSI` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
