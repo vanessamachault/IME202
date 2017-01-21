@@ -166,10 +166,25 @@ CREATE TABLE `notification` (`ID_Notification` int(11) NOT NULL, `ID_Patient_Uni
 CREATE TABLE `rel_notification_acp` (`NumAutoNotificationACP` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_ACP` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Structure de la table `rel_notification_pmsi`
+-- Structure de la table `rel_notification_das`
 --
 
-CREATE TABLE `rel_notification_pmsi` (`NumAutoNotificationPMSI` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_PMSI` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `rel_notification_das` (`NumAutoNotificationDAS` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_DAS` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `rel_notification_dp`
+--
+
+CREATE TABLE `rel_notification_dp` (`NumAutoNotificationDP` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_DP` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
+-- Structure de la table `rel_notification_dr`
+--
+
+CREATE TABLE `rel_notification_dr` (`NumAutoNotificationDR` int(11) NOT NULL, `NumNotification` int(11) NOT NULL, `Ligne_DR` int(11) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+
 
 
 --
@@ -292,9 +307,22 @@ ALTER TABLE `notification` ADD PRIMARY KEY (`ID_Notification`);
 ALTER TABLE `rel_notification_acp` ADD PRIMARY KEY (`NumAutoNotificationACP`);
 
 --
--- Index pour la table `rel_notification_pmsi`
+-- Index pour la table `rel_notification_das`
 --
-ALTER TABLE `rel_notification_pmsi` ADD PRIMARY KEY (`NumAutoNotificationPMSI`);
+ALTER TABLE `rel_notification_das` ADD PRIMARY KEY (`NumAutoNotificationDAS`);
+
+--
+-- Index pour la table `rel_notification_dp`
+--
+ALTER TABLE `rel_notification_dp` ADD PRIMARY KEY (`NumAutoNotificationDP`);
+
+--
+-- Index pour la table `rel_notification_dr`
+--
+ALTER TABLE `rel_notification_dr` ADD PRIMARY KEY (`NumAutoNotificationDR`);
+
+
+
 
 --
 -- AUTO_INCREMENT pour les tables exportées
@@ -393,9 +421,17 @@ ALTER TABLE `notification` MODIFY `ID_Notification` int(11) NOT NULL AUTO_INCREM
 --
 ALTER TABLE `rel_notification_acp` MODIFY `NumAutoNotificationACP` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT pour la table `rel_notification_pmsi`
+-- AUTO_INCREMENT pour la table `rel_notification_das`
 --
-ALTER TABLE `rel_notification_pmsi` MODIFY `NumAutoNotificationPMSI` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `rel_notification_das` MODIFY `NumAutoNotificationDAS` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `rel_notification_dp`
+--
+ALTER TABLE `rel_notification_dp` MODIFY `NumAutoNotificationDP` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `rel_notification_dr`
+--
+ALTER TABLE `rel_notification_dr` MODIFY `NumAutoNotificationDR` int(11) NOT NULL AUTO_INCREMENT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
