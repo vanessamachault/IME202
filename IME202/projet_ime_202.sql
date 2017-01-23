@@ -157,7 +157,7 @@ CREATE TABLE `libelle_cim10` (`NumAuto` int(11) NOT NULL, `Code_CIM10` varchar(5
 -- Structure de la table `notification`
 --
 
-CREATE TABLE `notification` (`ID_Notification` int(11) NOT NULL, `ID_Patient_Unique` int(11) NOT NULL, `Code_CIMO3_Topo` varchar(5) NOT NULL, `Code_CIMO3_Morpho` varchar(11) NOT NULL, `Notification_Date_Jour` tinyint(2) NOT NULL, `Notification_Date_Mois` tinyint(2) NOT NULL, `Notification_Date_Annee` smallint(4) NOT NULL, `Diagnostic_Date_Jour` tinyint(2) NOT NULL, `Diagnostic_Date_Mois` tinyint(2) NOT NULL, `Diagnostic_Date_Annee` smallint(4) NOT NULL, `Notification_Score` float NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `notification` (`ID_Notification` int(11) NOT NULL, `ID_Patient_Unique` int(11) NOT NULL, `Code_CIMO3_Topo` varchar(5) NOT NULL, `Code_CIMO3_Morpho` varchar(11) NOT NULL, `Notification_Date_Jour` tinyint(2) NOT NULL, `Notification_Date_Mois` tinyint(2) NOT NULL, `Notification_Date_Annee` smallint(4) NOT NULL, `Diagnostic_Date_Jour` tinyint(2) NOT NULL, `Diagnostic_Date_Mois` tinyint(2) NOT NULL, `Diagnostic_Date_Annee` smallint(4) NOT NULL, `Notification_Score` float NOT NULL, `Multisite` tinyint(1) NOT NULL) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Structure de la table `rel_notification_acp`
