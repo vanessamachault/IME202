@@ -1,6 +1,6 @@
 CREATE TRIGGER `BEFORE_INSERT_ON_DAS` BEFORE INSERT ON `das` FOR EACH ROW BEGIN
 	IF
-		LEFT(NEW.das,1) != 'C' && LEFT(NEW.das,2) != 'D0'
+		LEFT(NEW.das,1) != 'C' && LEFT(NEW.das,2) != 'D0' && LEFT(NEW.das,3) != 'C76' && LEFT(NEW.das,3) != 'C77' && LEFT(NEW.das,3) != 'C78' && LEFT(NEW.das,3) != 'C79' && LEFT(NEW.das,3) != 'C80'
 			THEN
       		SET NEW.Flag_Integration_DAS='2';
   END IF;

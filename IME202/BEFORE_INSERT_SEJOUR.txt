@@ -1,10 +1,10 @@
 CREATE TRIGGER `BEFORE_INSERT_ON_SEJOUR` BEFORE INSERT ON `sejour` FOR EACH ROW BEGIN
-  IF LEFT(NEW.DP,1) != 'C' && LEFT(NEW.DP,2) != 'D0'
+  IF LEFT(NEW.DP,1) != 'C' && LEFT(NEW.DP,2) != 'D0' && LEFT(NEW.DP,3) != 'C76' && LEFT(NEW.DP,3) != 'C77' && LEFT(NEW.DP,3) != 'C78' && LEFT(NEW.DP,3) != 'C79' && LEFT(NEW.DP,3) != 'C80'
   	THEN
 			SET NEW.Flag_Integration_DP='2';
   END IF;
   
-  IF LEFT(NEW.DR,1) != 'C' && LEFT(NEW.DR,2) != 'D0'
+  IF LEFT(NEW.DR,1) != 'C' && LEFT(NEW.DR,2) != 'D0'  && LEFT(NEW.DR,3) != 'C76' && LEFT(NEW.DR,3) != 'C77' && LEFT(NEW.DR,3) != 'C78' && LEFT(NEW.DR,3) != 'C79' && LEFT(NEW.DR,3) != 'C80'
   	THEN
 			SET NEW.Flag_Integration_DR='2';
   END IF;
